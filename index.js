@@ -7,41 +7,38 @@ server.use(express.json());
 const cursos = ['FullStack Master', 'Desenvolvimento de Games', 'Viver de Youtube' ];
 
 server.get('/cursos/:index', (req, res) =>{
-    const { index } = req.parms;
+    const { index } = req.params;
 
-    return res.jason(cursos[index]);
+    return res.json(cursos[index]);
 });
 
 server.get('/cursos', (req, res) =>{
-    return res.jason(cursos)
+    return res.json(cursos)
 });
 
 server.post('/cursos', (req,res) => {
     const {name} = req.body;
     cursos.push(name);
 
-    return res.jason(cursos);
+    return res.json(cursos);
 });
 
-server.put('/curso/:index', (req,res) => {
-    const{ index } = req.parms;
+server.put('/cursos/:index', (req,res) => {
+    const{ index } = req.params;
     const { name } = req.body;
     
     cursos[index] = name;
 
-    return res.jason(cursos);
+    return res.json(cursos);
 });
 
 server.delete('/cursos/:index', (req,res) => {
-    const { index } = req.parms;
+    const { index } = req.params;
 
     cursos.splice(index, 1);
-    return res.jason({ message: "O curso foi deletado" });
+    return res.json({ message: "O curso foi deletado" });
 })
 
-
-
-
-
-
-server.listen(3000);
+server.listen(3000, ()=>{
+    console.log('Server started on port 3000')
+});
